@@ -7,4 +7,4 @@
 * run ```npm install````
 
 # Launch App
-* ```ng serve --host 0.0.0.0 --disableHostCheck```
+* ```ng serve --host 0.0.0.0 --poll=2000```
