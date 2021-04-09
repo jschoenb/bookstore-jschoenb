@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 
+
 @NgModule({
   imports: [BrowserModule, FormsModule,AppRoutingModule, HttpClientModule,
     BrowserAnimationsModule, // required animations module
