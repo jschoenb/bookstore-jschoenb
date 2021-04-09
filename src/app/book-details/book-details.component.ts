@@ -5,6 +5,7 @@ import { BookFactory } from "../shared/book-factory";
 import { BookStoreService } from "../shared/book-store.service";
 import {ToastrService} from "ngx-toastr";
 
+
 @Component({
   selector: "bs-book-details",
   templateUrl: "./book-details.component.html"
