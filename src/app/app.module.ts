@@ -11,9 +11,14 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { SearchComponent } from './search/search.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule,AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule,AppRoutingModule, HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
+  ],
   declarations: [AppComponent, BookListComponent, BookListItemComponent, BookDetailsComponent, HomeComponent, SearchComponent],
   bootstrap: [AppComponent],
   providers: [BookStoreService]
