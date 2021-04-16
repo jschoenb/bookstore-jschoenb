@@ -24,6 +24,11 @@ export class BookFormComponent implements OnInit {
   isUpdatingBook = false;
   errors: { [key: string]: string } = {};
   images: FormArray;
+  city = [
+    {id:1,city:"Linz"},
+    {id:2,city:"Graz"},
+    {id:3,city:"Wien"},
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -64,7 +69,8 @@ export class BookFormComponent implements OnInit {
       description: this.book.description,
       rating: [this.book.rating, [Validators.min(0), Validators.max(10)]],
       published: this.book.published,
-      images: this.images
+      images: this.images,
+      cityName:null
     });
     this.bookForm.statusChanges.subscribe(() => {
       this.updateErrorMessages();
