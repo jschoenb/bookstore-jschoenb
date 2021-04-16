@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Book } from "../shared/book";
 import { BookFactory } from "../shared/book-factory";
@@ -44,22 +50,22 @@ export class BookFormComponent implements OnInit {
       id: this.book.id,
       title: [this.book.title, Validators.required],
       subtitle: this.book.subtitle,
-      isbn: [this.book.isbn,[
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(13)
-      ]],
+      isbn: [
+        this.book.isbn,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(13)
+        ]
+      ],
       description: this.book.description,
-      rating:[this.book.rating,[
-        Validators.min(0),Validators.max(10)
-      ]],
+      rating: [this.book.rating, [Validators.min(0), Validators.max(10)]],
       published: this.book.published,
       images: this.images
     });
-    this.bookForm.statusChanges.subscribe(()=>{
-        this.updateErrorMessages();
-      }
-    );
+    this.bookForm.statusChanges.subscribe(() => {
+      this.updateErrorMessages();
+    });
   }
 
   updateErrorMessages() {
@@ -78,42 +84,45 @@ export class BookFormComponent implements OnInit {
     }
   }
 
-  buildThumbnailsArray(){
+  buildThumbnailsArray() {
     this.images = this.fb.array([]);
-    for(let img of this.book.images){
+    for (let img of this.book.images) {
       let fg = this.fb.group({
-        id:new FormControl(img.id),
-        url: new FormControl(img.url,[Validators.required]),
-        title: new FormControl(img.title,[Validators.required])
+        id: new FormControl(img.id),
+        url: new FormControl(img.url, [Validators.required]),
+        title: new FormControl(img.title, [Validators.required])
       });
       this.images.push(fg);
     }
   }
 
-  addThumbnailControl(){
-    this.images.push(this.fb.group({url:null,title:null}));
+  addThumbnailControl() {
+    this.images.push(this.fb.group({ url: null, title: null }));
   }
 
-  submitForm(){
+  submitForm() {
     console.log(this.bookForm.value);
 
     //filters null values
     this.bookForm.value.images = this.bookForm.value.images.filter(
-      (thumbnail)=> thumbnail.url
+      thumbnail => thumbnail.url
     );
-    const updatedBook:Book = BookFactory.fromObject(this.bookForm.value);
+    const updatedBook: Book = BookFactory.fromObject(this.bookForm.value);
     console.log(updatedBook);
 
     //just a hack - did not care about authors
     updatedBook.authors = this.book.authors;
+    updatedBook.user_id = 1; //just hack
 
-    if(this.isUpdatingBook){
+    if (this.isUpdatingBook) {
       this.bs.update(updatedBook).subscribe(res => {
-        this.router.navigate(["../../books",updatedBook.isbn],{relativeTo:this.route});
+        this.router.navigate(["../../books", updatedBook.isbn], {
+          relativeTo: this.route
+        });
       });
     } else {
       this.bs.create(updatedBook).subscribe(res => {
-        this.router.navigate(["../../books"],{relativeTo:this.route});
+        this.router.navigate(["../books"], { relativeTo: this.route });
       });
     }
   }
