@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Book } from "../shared/book";
 import { BookFactory } from "../shared/book-factory";
 import { BookStoreService } from "../shared/book-store.service";
+import { BookValidators } from "../shared/book-validators";
 import { BookFormErrorMessages } from "./book-form-error-messages";
 
 @Component({
@@ -54,9 +55,11 @@ export class BookFormComponent implements OnInit {
         this.book.isbn,
         [
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(13)
-        ]
+          //Validators.minLength(10),
+          //Validators.maxLength(13)
+          BookValidators.isbnFormat
+        ],
+        this.isUpdatingBook ? null : BookValidators.isbnExists(this.bs)
       ],
       description: this.book.description,
       rating: [this.book.rating, [Validators.min(0), Validators.max(10)]],

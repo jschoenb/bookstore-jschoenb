@@ -15,6 +15,16 @@ export const BookFormErrorMessages = [
   ),
   new ErrorMessage(
     "isbn",
+    "isbnFormat",
+    "Die ISBN muss aus genau 10 oder 13 Zeichen bestehen"
+  ),
+  new ErrorMessage(
+    "isbn",
+    "isbnExists",
+    "Die ISBN existiert bereits in ihrer Datenbank"
+  ),
+  new ErrorMessage(
+    "isbn",
     "maxlength",
     "Eine ISBN darf höchstens 13 Zeichen haben"
   ),
