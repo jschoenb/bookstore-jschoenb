@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { BookListComponent } from "./book-list/book-list.component";
@@ -13,14 +13,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { SearchComponent } from './search/search.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import { BookFormComponent } from './book-form/book-form.component';
 
 
 @NgModule({
-  imports: [BrowserModule, FormsModule,AppRoutingModule, HttpClientModule,
+  imports: [BrowserModule, ReactiveFormsModule,AppRoutingModule, HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
   ],
-  declarations: [AppComponent, BookListComponent, BookListItemComponent, BookDetailsComponent, HomeComponent, SearchComponent],
+  declarations: [AppComponent, BookListComponent, BookListItemComponent, BookDetailsComponent, HomeComponent, SearchComponent, BookFormComponent],
   bootstrap: [AppComponent],
   providers: [BookStoreService]
 })
