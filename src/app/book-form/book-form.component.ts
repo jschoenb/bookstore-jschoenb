@@ -128,6 +128,8 @@ export class BookFormComponent implements OnInit {
         this.router.navigate(["../../books", updatedBook.isbn], {
           relativeTo: this.route
         });
+      }, (err)=>{
+        //TODO sinnvolle Fehlermeldung
       });
     } else {
       this.bs.create(updatedBook).subscribe(res => {

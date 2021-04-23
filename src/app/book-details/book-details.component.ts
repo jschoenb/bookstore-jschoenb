@@ -4,6 +4,7 @@ import { Book } from "../shared/book";
 import { BookFactory } from "../shared/book-factory";
 import { BookStoreService } from "../shared/book-store.service";
 import {ToastrService} from "ngx-toastr";
+import { AuthenticationService } from "../shared/authentication.service";
 
 
 @Component({
@@ -17,7 +18,8 @@ export class BookDetailsComponent implements OnInit {
     private bs: BookStoreService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit() {
